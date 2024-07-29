@@ -1,8 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import { register } from "../controllers/usuarioController.js";
+// Helper para validar os dados do novo usuário
+import validarUsuario from '../helpers/validar-user.js';
+// Importar o controller para registrar o novo usuário
+import { register } from '../controllers/usuarioController.js'; 
 
 const router = Router();
-router.post('/register', register)
+router.post('/register', validarUsuario, register);
 
 export default router;

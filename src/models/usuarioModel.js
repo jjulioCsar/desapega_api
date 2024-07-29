@@ -2,10 +2,11 @@ import conn from '../config/conn.js';
 
 const tableUsuario = /*sql*/ `
 CREATE TABLE IF NOT EXISTS usuario (
-    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id VARCHAR(255) PRIMARY KEY,
     nome VARCHAR(60) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
     imagem VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
