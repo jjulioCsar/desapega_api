@@ -4,6 +4,7 @@ import express from "express";
 // Configurações de porta
 const PORT = process.env.PORT || 3000;
 
+
 // Importar conexão com o banco de dados
 import conn from './config/conn.js';
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Rotas ativas
-app.use('/usuarios', usuarioRouter);
+app.use('/users', usuarioRouter);
 
 // Tratamento de erro 404 - Página não encontrada
 app.use((req, res) => {
