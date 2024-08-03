@@ -3,6 +3,7 @@ import { Router } from "express";
 // Helper para validar os dados do novo usuário
 import validarUsuario from "../helpers/validar-user.js";
 import verifyToken from "../helpers/verify-token.js"
+import imagemUploader from "../helpers/image-upload.js";
 
 // Importar o controller para registrar o novo usuário
 import {
@@ -19,6 +20,6 @@ router.post("/register", validarUsuario, register);
 router.post("/login", login);
 router.get("/checkUser", checkUser); //Serve para auxiliar o front end
 router.get("/:id", getUserById)
-router.put("/edit/:id", verifyToken, editUser) // Verificar se está logado e upload de imagem para perfil
+router.put("/edit/:id", verifyToken, imagemUploader.single("imagem"), editUser) // Verificar se está logado e upload de imagem para perfil
 
 export default router;
