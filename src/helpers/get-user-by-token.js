@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import conn from '../config/conn.js';
 
-const getUserByToken = (token) => {
+const getUserByToken = async (token) => {
     return new Promise((resolve, reject) => {
         if (!token) {
             return reject({ status: 401, message: 'Acesso negado' });
@@ -15,9 +15,11 @@ const getUserByToken = (token) => {
             }
 
             const userID = decoded.id;
+            console.log('ID do usuário:', userID);
+
             const checkSql = 'SELECT * FROM usuario WHERE usuario_id = ?';
             const checkData = [userID];
-
+            console.log('checkData do usuário:', checkData);
             conn.query(checkSql, checkData, (err, data) => {
                 if (err) {
                     reject({ status: 500, message: 'Erro ao buscar usuário', error: err });

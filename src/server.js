@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import path from 'path';
 import { fileURLToPath } from "url";
+import cors from 'cors';
 
 // Configurações de porta
 const PORT = process.env.PORT || 3000;
@@ -26,6 +27,12 @@ const __dirname = path.dirname(__filename);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//CORS
+app.use(cors({
+    origin: ['http://localhost:5372']
+}));
+
+//Localizar onde está a pasta public
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
 // Rotas ativas
